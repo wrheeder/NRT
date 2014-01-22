@@ -7,7 +7,9 @@ class page_admin extends Page_ApplicationPage {
         if ($this->api->auth->isAdmin()) {
             $tabs = $this->add('Tabs');
             $user = $tabs->addTab('Users')->add("CRUD");
+            $regions = $tabs->addTab('Regions')->add("CRUD");
             $m_usr = $user->setModel('Users', array('email', 'name', 'surname', 'isAdmin','user_must_change_pw'));
+            $m_regs = $regions->setModel('Regions');
             
             $this->api->stickyGet('id');
             if ($user->grid) {
@@ -20,6 +22,8 @@ class page_admin extends Page_ApplicationPage {
                 $user->grid->addPaginator(10);
 
                 $user->grid->addColumn('button', 'changePassword');
+                $user->grid->addColumn('expander', 'UserRegions');
+                
                 if ($_GET['changePassword']) {
 
                     // Get the name of currently selected member

@@ -37,6 +37,7 @@ class page_admin extends Page_ApplicationPage {
 
             if ($user->form) {
                 //$user->form->addField('password','password');
+                //$user->form->getElement('email')->validateField('filter_var($this->get(), FILTER_VALIDATE_EMAIL)');
                 if ($user->form->isSubmitted()) {
                     $m = $user->form->getModel();
                     if ($m['password'] == null || $m['password'] == '')

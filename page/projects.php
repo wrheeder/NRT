@@ -1,5 +1,5 @@
 <?php
-class page_projects extends Page_ApplicationPage{
+class Page_Projects extends Page_ApplicationPage{
     function init(){
         parent::init();
     }

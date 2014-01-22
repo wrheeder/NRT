@@ -40,9 +40,7 @@ class Frontend extends ApiFrontend {
 //        $auth->allowPage('admin/changePasswordExt');
 //     
         if ($auth->isLoggedIn()) {
-            $menu[] = array('ids' => 0, 'page' => 'index', 'name' => 'Warehouse Viewer', 'parent_id' => null);
-
-            
+            $menu[] = array('ids' => 0, 'page' => 'index', 'name' => 'Rollout', 'parent_id' => null);
             if ($auth->isAdmin()) {
                 $menu[] = array('ids' => 3, 'page' => 'admin', 'name' => 'Admin', 'parent_id' => null);
             }

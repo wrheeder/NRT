@@ -11,6 +11,7 @@ class Model_Users extends Model_Table {
         $this->addField('surname')->mandatory('Surname required');
         $this->addField('password')->display(array('form' => 'password'))->mandatory('Type your password');
         $this->addField('isAdmin')->type('boolean');
+        $this->addField('user_must_change_pw')->type('boolean');
     }
     
 

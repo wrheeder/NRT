@@ -30,7 +30,31 @@ class Frontend extends ApiFrontend {
                 ->_load('ui.atk4_notify')
         ;
         $auth = $this->add('ApplicationAuth');
-        
+        $l = $this->add('menu/Menu_Dropdown', null, 'Menu'); // DON'T USE FIELD NAMED "ID", because it's already built-in Model class as auto-incremental
+        $layout = $this->api->add('Layout/Layout');
+        if ($this->page == "index") {
+            $layout->show("west");
+            $layout->toggle("west");
+        }
+        $menu = array();
+//        $auth->allowPage('admin/changePasswordExt');
+//     
+        if ($auth->isLoggedIn()) {
+            $menu[] = array('ids' => 0, 'page' => 'index', 'name' => 'Warehouse Viewer', 'parent_id' => null);
+
+            
+            if ($auth->isAdmin()) {
+                $menu[] = array('ids' => 3, 'page' => 'admin', 'name' => 'Admin', 'parent_id' => null);
+            }
+            $menu[] = array('ids' => 5, 'page' => 'logout', 'name' => 'Logout', 'parent_id' => null);
+        } else {
+            $layout->hide("west");
+        }
+        $l->setRelationFields('ids', 'parent_id');
+        //$this->add('themeswitcher\Test','themeswitcher_test');
+
+
+        $l->setSource($menu);
     }
 
     function initLayout() {

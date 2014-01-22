@@ -14,6 +14,6 @@
 include 'atk4/loader.php';
 
 date_default_timezone_set('Africa/Johannesburg');
-$api=new Frontend('NRT');
+$api=new Frontend('NRT','CellC');
 $api->main();
 ?>

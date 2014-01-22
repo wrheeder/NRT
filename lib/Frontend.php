@@ -29,12 +29,12 @@ class Frontend extends ApiFrontend {
                 ->_load('atk4_univ')
                 ->_load('ui.atk4_notify')
         ;
-
+        $auth = $this->add('ApplicationAuth');
         
     }
 
     function initLayout() {
-       // $this->auth->check();
+        $this->auth->check();
         parent::initLayout();
     }
 

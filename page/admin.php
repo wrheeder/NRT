@@ -8,10 +8,12 @@ class page_admin extends Page_ApplicationPage {
             $tabs = $this->add('Tabs');
             $user = $tabs->addTab('Users')->add("CRUD");
             $regions = $tabs->addTab('Regions')->add("CRUD");
+            $project_types = $tabs->addTab('Project Types')->add("CRUD");
             $m_usr = $user->setModel('Users', array('email', 'name', 'surname', 'isAdmin','user_must_change_pw'));
             $m_regs = $regions->setModel('Regions');
-            
+            $m_project_types = $project_types->setModel('ProjectTypes');
             $this->api->stickyGet('id');
+            $this->api->stickyGet('project_types_id');
             if ($user->grid) {
                 $user->grid->addQuickSearch(array('email','name','surname','user_must_change_pw'));
                 $user->grid->getColumn('email')->makeSortable();
@@ -44,6 +46,10 @@ class page_admin extends Page_ApplicationPage {
                         $m->set('password', $this->api->auth->encryptPassword('tempPW1234'));
                     $m->save();
                 }
+            }
+            
+            if($project_types->grid){
+                $project_types->grid->addColumn('expander', 'ProjectMilestones');
             }
         }
         
